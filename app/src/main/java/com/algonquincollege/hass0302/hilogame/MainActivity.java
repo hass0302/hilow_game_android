@@ -1,8 +1,8 @@
 package com.algonquincollege.hass0302.hilogame;
 
 import android.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,11 +14,11 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private static final String ABOUT_DIALOG_TAG = "About Dialog";
+    hilow game;
     private Button startButton;
     private Button guessBtn;
     private EditText guessInput;
     private TextView display;
-    hilow game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
+
+                // this is start new game button / reset button.
                 game = new hilow();
                 game.init();
                 display.setText("COUNT: " + game.getCounter());
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         startButton.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View view) {
+                // nothing of importances here, just checking if its a new game, if so, it will reveal what the number is.
+                // You cheater
                 try {
                     Toast.makeText(getApplicationContext(), Integer.toString(game.getNum()), Toast.LENGTH_LONG).show();
                 } catch (RuntimeException e) {
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int num = -1;
 
+                // Just trying to make sure its a valid input
                 try {
                     num = Integer.parseInt(guessInput.getText().toString());
                 } catch (NumberFormatException e) {
@@ -68,19 +73,23 @@ public class MainActivity extends AppCompatActivity {
                     guessInput.setText("");
                 }
 
+                // if its out of range then display error
                 if (num < 1 || num > 1000) {
                     guessInput.setError("The range must be between 1 - 1000 inclusive");
                 } else {
+                    // if game over then reset the game, you can't continue to play anymore
                     if (game.getCounter() == 10) {
                         display.setText("GAME OVER");
                         Toast.makeText(getApplicationContext(), "Please Reset!", Toast.LENGTH_LONG).show();
                         guessBtn.setEnabled(false);
                         guessInput.setEnabled(false);
                     } else {
+                        // if everything is good, counter ++ ; runs the game logic in hilow.
                         game.setCounter();
                         Toast.makeText(getApplicationContext(), game.getHiLow(num), Toast.LENGTH_SHORT).show();
                         display.setText("COUNT: " + game.getCounter());
 
+                        // i just have a boolean flag to check if its a win. my buttons enable and disables depending on it
                         if (game.getWinFlag() == true) {
                             display.setText("You've Won!\nGAME OVER");
 
