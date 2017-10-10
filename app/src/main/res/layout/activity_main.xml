@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:weightSum="1">
     // tools:context="com.algonquincollege.hass0302.hilogame.MainActivity">
 
     <TextView
@@ -47,4 +48,11 @@
         android:text="Start"
         android:textAlignment="center"
         android:textSize="35sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/curry" />
 </LinearLayout>

@@ -1,8 +1,8 @@
 package com.algonquincollege.hass0302.hilogame;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static final String ABOUT_DIALOG_TAG = "About Dialog";
     hilow game;
